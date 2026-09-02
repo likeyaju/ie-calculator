@@ -1,0 +1,1 @@
+.values-panel .add-value{width:calc(100% - 20px);margin:20px 10px 10px;background:#dfeaf0;border:1px solid #9fb7c3;outline:10px solid #eef3f5;box-shadow:0 0 0 1px #d8e2e7;color:var(--navy);font-weight:700}.values-panel .add-value:active{background:#cbdde6}@media(max-width:700px){.values-panel .add-value{margin-top:18px;margin-bottom:10px}}

@@ -1,0 +1,19 @@
+# Dependencies and generated build folders
+node_modules/
+dist/
+source/node_modules/
+source/dist/
+
+# TypeScript incremental build cache
+*.tsbuildinfo
+
+# Local editor and operating-system files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local environment files
+.env
+.env.*
+!.env.example

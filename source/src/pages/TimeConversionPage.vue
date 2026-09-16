@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 import { t } from '../i18n'
+import { acceptDecimalDraft, parseDecimalDraft } from '../logic/decimalInput'
 
 type Source = keyof typeof values
 const copied = ref('')
@@ -12,7 +13,7 @@ const values = reactive({
   day: '', dayH: '', dayM: '', dayS: '', clockH: '', clockM: '', clockHs: '', clockMs: '', clockS: '', excel: ''
 })
 
-function n(value: string) { const parsed = Number(value); return Number.isFinite(parsed) ? parsed : 0 }
+function n(value: string) { return parseDecimalDraft(value) ?? 0 }
 function clean(value: number) { return Number(value.toPrecision(12)).toString() }
 function displayed(key: Source, value: number) {
   if (key === 'totalHours') return value.toFixed(2)
@@ -39,12 +40,9 @@ function sync(seconds: number, source: Source | null) {
 }
 function edit(key: Source, event: Event, seconds: () => number) {
   const input = event.target as HTMLInputElement
-  const raw = input.value
-  const numeric = raw.replace(/[^0-9.]/g, '')
-  const parts = numeric.split('.')
-  const sanitized = (parts.shift() ?? '') + (parts.length ? `.${parts.join('')}` : '')
-  values[key] = sanitized
-  if (input.value !== sanitized) input.value = sanitized
+  const accepted = acceptDecimalDraft(input.value, values[key])
+  values[key] = accepted
+  if (input.value !== accepted) input.value = accepted
   if (values[key] === '') return
   sync(seconds(), key)
 }
@@ -80,7 +78,7 @@ function handleKeydown(event: KeyboardEvent) {
   }
   const allowed = ['Backspace', 'Delete', 'Tab', 'Enter', 'Escape', 'Home', 'End']
   if (/^[0-9]$/.test(event.key) || allowed.includes(event.key)) return
-  if (event.key === '.' && (!input.value.includes('.') || input.selectionStart !== input.selectionEnd)) return
+  if ((event.key === '.' || event.key === ',') && (!/[.,]/.test(input.value) || input.selectionStart !== input.selectionEnd)) return
   if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
     const group = input.closest('.group-input')
     if (!group) return

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { nextTick, ref } from 'vue'
+import { nextTick, ref, watch } from 'vue'
+import { acceptDecimalDraft, parseDecimalDraft } from '../logic/decimalInput'
 
 const props = withDefaults(defineProps<{
   modelValue: number | null
@@ -12,19 +13,15 @@ const props = withDefaults(defineProps<{
 const emit = defineEmits<{ 'update:modelValue': [value: number | null]; enter: [] }>()
 const input = ref<HTMLInputElement | null>(null)
 const justFocused = ref(false), enterHint = ref<'next'|'done'>('next')
-
-function sanitize(raw: string) {
-  const normalized = raw.replace(/[^0-9.]/g, '')
-  if (props.integer) return normalized.replace(/\./g, '')
-  const dot = normalized.indexOf('.')
-  return dot < 0 ? normalized : normalized.slice(0, dot + 1) + normalized.slice(dot + 1).replace(/\./g, '')
-}
+const draft=ref(props.modelValue==null?'':String(props.modelValue))
+watch(()=>props.modelValue,value=>{const parsed=props.integer?(draft.value===''?null:Number(draft.value)):parseDecimalDraft(draft.value);if(value!==parsed)draft.value=value==null?'':String(value)})
 
 function update(event: Event) {
   const target = event.target as HTMLInputElement
-  const clean = sanitize(target.value)
-  if (target.value !== clean) target.value = clean
-  emit('update:modelValue', clean === '' || clean === '.' ? null : Number(clean))
+  const accepted=props.integer?(/^\d*$/.test(target.value)?target.value:draft.value):acceptDecimalDraft(target.value,draft.value)
+  draft.value=accepted
+  if (target.value !== accepted) target.value = accepted
+  emit('update:modelValue', props.integer?(accepted===''?null:Number(accepted)):parseDecimalDraft(accepted))
 }
 
 function focus() {
@@ -49,7 +46,7 @@ function advance(){const inputs=[...(input.value?.closest('.page')?.querySelecto
     <span class="field-label">{{ label }} <em v-if="optional">{{ optional }}</em></span>
     <span class="input-wrap">
       <input ref="input" type="text" :inputmode="integer ? 'numeric' : 'decimal'" :enterkeyhint="enterHint" autocomplete="off"
-        :value="modelValue ?? ''" @input="update" @focus="focus" @click="click" @keydown.enter.prevent="advance();emit('enter')" />
+        :value="draft" @input="update" @focus="focus" @click="click" @keydown.enter.prevent="advance();emit('enter')" />
       <span class="unit">{{ unit }}</span>
     </span>
     <small v-if="hint">{{ hint }}</small>

@@ -8,9 +8,13 @@ export default {
     efficiency: { title: '生产效率', desc: '根据产量、SAM、人数和工时实时计算' },
     ctCapacity: { title: 'CT 与产能', desc: '节拍、目标产量与人员需求换算' },
     time: { title: '时间工具', desc: '日期差、工作时间与时间换算' },
-    average: { title: '平均值 / 求和', desc: '快速汇总多组测量数据' }
+    average: { title: '平均值 / 求和', desc: '快速汇总多组测量数据' },
+    materialWeight: { title: '领料称重换算', desc: '根据样本和总重量换算领用数量／长度' },
+    materialUsage: { title: '工艺单用量核算', desc: '根据单件实测长度推算整单需求' }
   },
   common: { input: '输入数据', result: '计算结果', waiting: '请完整填写必填数据', reset: '重置', formula: '查看计算公式', optional: '可选', pieces: '件', piecesPerHour: '件/小时', people: '人', hours: '小时', minutes: '分钟', seconds: '秒', countUnit: '个' },
+  materialWeight: { title: '领料称重换算', intro: '输入已知样本和全部物料的重量，换算实际领用数量或长度。', sampleAmount: '样本数量／长度', sampleAmountHint: '按现场实际输入个数或米长', amountUnit: '个／米', sampleWeight: '样本重量', totalWeight: '全部物料重量', grams: '克', converted: '换算结果', formula: '换算结果 = 全部物料重量 ÷ 样本重量 × 样本数量／长度', formulaNote: '样本是个数时结果为个数；样本是米长时结果为米长。' },
+  materialUsage: { title: '工艺单用量核算', intro: '根据单件实测长度、两端余量和订单数量推算整单需求。', measured: '单件实际测量长度', allowance: '两端余量合计', allowanceHint: '输入两端需要保留的总长度', orderQuantity: '订单生产数量', processAmount: '工艺单用量', optionalHint: '填写后自动显示充足或不足', cm: '厘米', meters: '米', pieces: '件', perPiece: '单件需求：', totalCm: '整单合计：', difference: '用量差异', insufficient: '用量不足', sufficient: '用量充足', formula1: '单件需求（厘米）= 单件实测长度 + 两端余量合计', formula2: '整单需求（厘米）= 单件需求 × 订单生产数量', formula3: '整单需求（米）= 整单需求（厘米）÷ 100', formula4: '用量差异 = 工艺单用量 − 整单需求' },
   productionTools: { title: '生产效率', intro: '选择效率、产量、达成率或理论人数计算。' },
   ctTools: { title: 'CT 与产能', intro: '选择 CT 产能、TT 或线平衡率计算。' },
   targetOutput: { title: '目标产量', intro: '根据目标效率、人数、工时和 SAM 计算所需产量。', targetEfficiency: '目标效率', workers: '人数', hours: '工作时长', required: '所需产量', formula: '所需产量 = 目标效率 × 人数 × 工时 × 60 ÷ SAM', terms: 'SAM 是什么意思？', termText: 'SAM：按标准方法来说，做这一件产品应该需要多少分钟。结果保留小数，不自动取整。' },

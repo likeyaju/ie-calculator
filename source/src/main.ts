@@ -23,6 +23,7 @@ import TaktTimePage from './pages/TaktTimePage.vue'
 import LineBalancePage from './pages/LineBalancePage.vue'
 import MaterialWeightPage from './pages/MaterialWeightPage.vue'
 import MaterialUsagePage from './pages/MaterialUsagePage.vue'
+import EfficiencyGapPage from './pages/EfficiencyGapPage.vue'
 import { ONLINE_ACCESS_REQUIRED, ONLINE_ACCESS_TOKEN } from './app/appConfig'
 import './styles/tokens.css'
 import './styles/global.css'
@@ -51,6 +52,7 @@ import './styles/bottleneck-help.css'
 import './styles/calculator-history-actions.css'
 import './styles/release-access.css'
 import './styles/materials.css'
+import './styles/efficiency-gap.css'
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -77,6 +79,7 @@ const router = createRouter({
     { path: '/time-add-subtract', component: TimeAddSubtractPage, meta: { titleKey: 'timeAdd.title' } },
     { path: '/material-weight', component: MaterialWeightPage, meta: { titleKey: 'materialWeight.title' } },
     { path: '/material-usage', component: MaterialUsagePage, meta: { titleKey: 'materialUsage.title' } },
+    { path: '/efficiency-gap', component: EfficiencyGapPage, meta: { titleKey: 'efficiencyGap.title' } },
   ],
   scrollBehavior: (_to, _from, savedPosition) => savedPosition ?? ({ top: 0 })
 })

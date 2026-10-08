@@ -79,8 +79,8 @@ onBeforeUnmount(() => document.removeEventListener('focusin', keepFocusedInputVi
           <p>{{ result.reached ? t('efficiencyGap.reachedNote') : t('efficiencyGap.reachNote') }} {{ formatDecimal(form.targetEfficiency!) }}%</p>
         </div>
         <div class="gap-metrics">
-          <span><small>{{ t('efficiencyGap.totalOutput') }}</small><b>{{ result.totalOutput }} {{ t('efficiencyGap.units.pcs') }}</b></span>
           <span><small>{{ t('efficiencyGap.actualEfficiency') }}</small><b>{{ result.actualEfficiency.toFixed(2) }}%</b></span>
+          <span><small>{{ t('efficiencyGap.achievementRate') }}</small><b>{{ result.achievementRate.toFixed(2) }}%</b></span>
           <span><small>{{ t('efficiencyGap.requiredTotal') }}</small><b>{{ result.requiredTotalOutput }} {{ t('efficiencyGap.units.pcs') }}</b></span>
           <span><small>{{ t('efficiencyGap.difference') }}</small><b>{{ result.efficiencyDifference >= 0 ? '+' : '' }}{{ result.efficiencyDifference.toFixed(2) }} {{ t('efficiencyGap.points') }}</b></span>
         </div>
@@ -116,7 +116,7 @@ onBeforeUnmount(() => document.removeEventListener('focusin', keepFocusedInputVi
     <section class="gap-actions">
       <button class="gap-formula-toggle" :aria-expanded="formulaOpen" @click="formulaOpen = !formulaOpen"><span>ƒx&nbsp; {{ t('efficiencyGap.formulaTitle') }}</span><b>{{ formulaOpen ? '−' : '+' }}</b></button>
       <div v-if="formulaOpen" class="gap-formulas">
-        <p>{{ t('efficiencyGap.formula1') }}</p><p>{{ t('efficiencyGap.formula2') }}</p><p>{{ t('efficiencyGap.formula3') }}</p><p>{{ t('efficiencyGap.formula4') }}</p>
+        <p>{{ t('efficiencyGap.formula1') }}</p><p>{{ t('efficiencyGap.formula2') }}</p><p>{{ t('efficiencyGap.formula3') }}</p><p>{{ t('efficiencyGap.formula4') }}</p><p>{{ t('efficiencyGap.formula5') }}</p>
       </div>
       <button class="gap-reset" @click="reset">↻ {{ t('efficiencyGap.reset') }}</button>
     </section>

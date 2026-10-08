@@ -17,10 +17,10 @@ export default {
   materialUsage: { title: '工艺单用量核算', intro: '根据单件实测长度、两端余量和订单数量推算整单需求。', measured: '单件实际测量长度', allowance: '两端余量合计', allowanceHint: '输入两端需要保留的总长度', orderQuantity: '订单生产数量', processAmount: '工艺单用量', optionalHint: '填写后自动显示充足或不足', cm: '厘米', meters: '米', pieces: '件', perPiece: '单件需求：', totalCm: '整单合计：', difference: '用量差异', insufficient: '用量不足', sufficient: '用量充足', formula1: '单件需求（厘米）= 单件实测长度 + 两端余量合计', formula2: '整单需求（厘米）= 单件需求 × 订单生产数量', formula3: '整单需求（米）= 整单需求（厘米）÷ 100', formula4: '用量差异 = 工艺单用量 − 整单需求' },
   efficiencyGap: {
     title: '目标效率差距', intro: '汇总产量记录，计算达到目标效率至少还差多少件。', result: '计算结果', live: '实时', reached: '还差件数', remaining: '至少还差', reachedNote: '已达到目标效率', reachNote: '即可达到',
-    totalOutput: '当前总产量', actualEfficiency: '当前实际效率', requiredTotal: '最低达标总产量', difference: '效率差距', points: '个百分点', safetyNote: '此结果为理论最低达标件数，现场执行请适当预留余量。',
+    totalOutput: '当前总产量', actualEfficiency: '当前实际效率', achievementRate: '效率达成率', requiredTotal: '最低达标总产量', difference: '效率差距', points: '个百分点', safetyNote: '此结果为理论最低达标件数，现场执行请适当预留余量。',
     waiting: '请填写基本信息和至少一条产量记录。', invalid: '请输入大于0的基本信息和有效的整数产量。', basicInfo: '基本信息', sam: 'SAM', workers: '人数', hours: '上班小时数', targetEfficiency: '目标效率',
     outputRecords: '产量记录', recordsHint: '可输入每小时产量，也可输入已经汇总的产量。', enteredTotal: '目前已录入产量合计：', record: '产量记录', reset: '重置数据', formulaTitle: '查看计算公式',
-    formula1: '实际总产量 = 所有产量记录相加', formula2: '实际效率 = 实际总产量 × SAM ÷（人数 × 上班小时数 × 60）× 100%', formula3: '理论目标产量 = 人数 × 上班小时数 × 60 × 目标效率 ÷ 100 ÷ SAM', formula4: '至少还差件数 = 向上取整后的目标总产量 − 当前总产量',
+    formula1: '实际总产量 = 所有产量记录相加', formula2: '实际效率 = 实际总产量 × SAM ÷（人数 × 上班小时数 × 60）× 100%', formula3: '效率达成率 = 实际效率 ÷ 目标效率 × 100%', formula4: '理论目标产量 = 人数 × 上班小时数 × 60 × 目标效率 ÷ 100 ÷ SAM', formula5: '至少还差件数 = 向上取整后的目标总产量 − 当前总产量',
     units: { pcs: '件', min: '分钟', people: '人', hour: '小时', percent: '%' }
   },
   productionTools: { title: '生产效率', intro: '选择效率、产量、达成率或理论人数计算。' },

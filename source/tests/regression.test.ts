@@ -34,6 +34,7 @@ const gap=calculateEfficiencyGap({sam:10,workers:20,hours:8,targetEfficiency:95,
 assert.equal(gap.valid,true)
 assert.equal(gap.totalOutput,800)
 assert.equal(gap.actualEfficiency,800/9.6)
+assert.equal(gap.achievementRate,(800/9.6)/95*100)
 assert.equal(gap.requiredTotalOutput,912)
 assert.equal(gap.remainingPieces,112)
 assert.equal(gap.reached,false)

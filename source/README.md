@@ -1,4 +1,4 @@
-# IE 计算器 V1.3
+# IE 计算器 V1.3.1
 
 Vue 3 + Vite + TypeScript 构建的移动端优先原型。
 

@@ -10,6 +10,7 @@ export interface EfficiencyGapResult {
   valid: boolean
   totalOutput: number
   actualEfficiency: number
+  achievementRate: number
   theoreticalTargetOutput: number
   requiredTotalOutput: number
   remainingPieces: number
@@ -35,6 +36,7 @@ export function calculateEfficiencyGap(input: EfficiencyGapInput): EfficiencyGap
       valid: false,
       totalOutput,
       actualEfficiency: 0,
+      achievementRate: 0,
       theoreticalTargetOutput: 0,
       requiredTotalOutput: 0,
       remainingPieces: 0,
@@ -46,6 +48,7 @@ export function calculateEfficiencyGap(input: EfficiencyGapInput): EfficiencyGap
 
   const availableMinutes = input.workers! * input.hours! * 60
   const actualEfficiency = totalOutput * input.sam! / availableMinutes * 100
+  const achievementRate = actualEfficiency / input.targetEfficiency! * 100
   const theoreticalTargetOutput = availableMinutes * (input.targetEfficiency! / 100) / input.sam!
   const requiredTotalOutput = reliableCeil(theoreticalTargetOutput)
   const remainingPieces = Math.max(0, requiredTotalOutput - totalOutput)
@@ -55,6 +58,7 @@ export function calculateEfficiencyGap(input: EfficiencyGapInput): EfficiencyGap
     valid: true,
     totalOutput,
     actualEfficiency,
+    achievementRate,
     theoreticalTargetOutput,
     requiredTotalOutput,
     remainingPieces,
